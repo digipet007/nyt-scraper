@@ -4,6 +4,12 @@ var mongoose = require("mongoose");
 var expressHandlebars = require("express-handlebars");
 var bodyParser = require("body-parser");
 
+// To avoid deprecations with Mongoose need to test still
+mongoose.set("useNewUrlParser", true);
+mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
+mongoose.set("useUnifiedTopology", true);
+
 // Set up port as either the host's port or port 8080
 var PORT = process.env.PORT || 8080;
 
