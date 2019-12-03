@@ -32,6 +32,7 @@ app.engine(
     defaultLayout: "main"
   })
 );
+app.set("view engine", "handlebars");
 
 // Use bodyparser in app
 app.use(
