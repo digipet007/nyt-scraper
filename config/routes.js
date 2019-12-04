@@ -45,10 +45,10 @@ module.exports = function(router) {
 
   //api route deletes headline with specific id
   router.delete("/api/headlines/:id", function(req, res) {
-    var query = {};
-    query._id = req.params.id;
+    var queryId = {};
+    queryId = req.params.id;
     //NOTE: I changed the param here from query to query._id
-    headlinesController.delete(query._id, function(err, data) {
+    headlinesController.delete(queryId, function(err, data) {
       res.json(data);
     });
   });
@@ -60,14 +60,31 @@ module.exports = function(router) {
       res.json(data);
     });
   });
-  //Route grabs all notes to display to user
+  //Route grabs all notes associated with an article to display to user
+  //Runs route on notes associated with headline id
   router.get("/api/notes/:headline", function(req, res) {
-    var query = {};
+    var queryId = {};
     if (req.params.headline_id) {
-      query._id = req.params.headline_id;
+      queryId = req.params.headline_id;
     }
 
-    notesController.get(query._id, function(err, data) {
+    notesController.get(queryId, function(err, data) {
+      res.json(data);
+    });
+  });
+
+  //Route for deleting notes
+  router.delete("/api/notes/:id", function(req, res) {
+    var queryId = {};
+    queryId = req.params.id;
+    notesController.delete(query, function(err, data) {
+      res.json(data);
+    });
+  });
+
+  //route for posting new notes to articles
+  router.post("/api/notes", function(req, res) {
+    notesController.save(req.body, function(data) {
       res.json(data);
     });
   });
