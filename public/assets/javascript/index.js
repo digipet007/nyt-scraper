@@ -1,5 +1,5 @@
 //global "bootbox" functions occur on load
-$document.ready(function() {
+$(document).ready(function() {
   //Set a reference to the article container div where all the dynamic content will go
   var articleContainer = $(".article-container");
   $(document).on("click", ".btn.save", handleArticleSave);
