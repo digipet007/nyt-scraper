@@ -1,4 +1,3 @@
-//global "bootbox" functions occur on load
 $(document).ready(function() {
   //Set a reference to the article container div where all the dynamic content will go
   var articleContainer = $(".article-container");
@@ -87,12 +86,11 @@ $(document).ready(function() {
   function handleArticleScrape() {
     //Triggered by clicking scrape new article buttons
     //go to the api fetch route, run the init page function again to reload new articles
-    //alert data.message, from router function
+    //alert data.message, from router function, alerts the user how many articles were saved
     $.get("/api/fetch").then(function(data) {
       initPage();
-      bootbox.alert(
-        "<h3 class='text-center m-top-80'>" + data.message + "</h3>"
-      );
+      console.log(data.message);
+      alert(data.message);
     });
   }
 });

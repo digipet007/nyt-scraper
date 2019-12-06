@@ -35,7 +35,7 @@ const scrape = function(cb) {
         results.push(dataToAdd);
       }
     });
-    cb(articles);
+    cb(results);
     // Log the results once you've looped through each of the elements found with cheerio
     console.log(results);
   });
