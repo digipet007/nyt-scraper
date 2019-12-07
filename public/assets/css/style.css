@@ -5,15 +5,6 @@ html {
 
 body {
   margin-bottom: 80px;
-  /* background-image: url("../images/newspaper.jpg"); */
-}
-
-.sticky-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 80px;
-  background-color: #f5f5f5;
 }
 
 .navbar {
@@ -24,11 +15,11 @@ body {
     flex: 1 0 auto;
 }
 
+/* jumbotron styling */
 .jumbotron {
-  /* background-image: url("../images/newspaper.jpg"); */
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 450px;
   padding: 0;
   box-shadow: 10px 5px 20px 2px lightslategrey 
 }
@@ -43,7 +34,6 @@ body {
   bottom: 0;
   left: 0;
 }
-
 
 .jumbotron .background-image {
   height: 100%;
@@ -76,6 +66,7 @@ body {
   padding-bottom: 25px;
 }
 
+/* card styling */
 .card {
   border-radius: 0;
   box-shadow: 3px 3px 20px lightslategrey;
@@ -113,6 +104,7 @@ body {
   width: 80%;
 }
 
+/* footer styling */
 .footer > .container > p {
   position: absolute;
   right: 0;
@@ -126,10 +118,9 @@ body {
   background: #0c7cd5;
 }
 
+/* navbar styling */
 .navbar-nav > li > a.scrape-new,
 .navbar-nav > li > a.clear {
-  padding: 10px;
-  margin-top: 10px;
   margin-left: 10px;
   font-weight: 800;
   color: white;
@@ -138,6 +129,7 @@ body {
 .navbar-nav > li > a.scrape-new:hover,
 .navbar-nav > li > a.clear:hover {
   background: #4caf50;
+  outline-color: #4caf50;
 }
 
 .navbar-nav > li > a.scrape-new:active {
@@ -148,9 +140,9 @@ body {
   cursor: pointer;
 }
 
-.m-top-80 {
+/* .m-top-80 {
   margin-top: 80px;
-}
+} */
 
 textarea {
   padding: 10px;
