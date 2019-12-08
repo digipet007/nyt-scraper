@@ -15,10 +15,8 @@ module.exports = {
         articles[i].saved = false;
       }
       //Mongo function- the callback in insertMany allows the function to skip over any failed articles and continue loading
-      Headline.collection.insertMany(articles, { ordered: false }, function(
-        err,
-        docs
-      ) {
+      // Headline.collection.insertMany(articles, { ordered: false }, function(
+      Headline.insertMany(articles, { ordered: false }, function(err, docs) {
         //return any errors in the docs
         cb(err, docs);
       });
@@ -43,11 +41,25 @@ module.exports = {
   update: function(query, cb) {
     Headline.update(
       { _id: query._id },
-      {
-        $set: query
-      },
-      {},
-      cb
+      { $set: query },
+      { $set: query },
+      { $set: query },
+      { $set: query }
     );
+    // .exec(function(query, cb) {
+    cb(results);
+    // });
   }
 };
+
+//   update: function(query, cb) {
+//     Headline.update(
+//       { _id: query._id },
+//       {
+//         $set: query
+//       },
+//       {},
+//       cb
+//     );
+//   }
+// };

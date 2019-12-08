@@ -6,16 +6,16 @@ $(document).ready(function() {
   $(document).on("click", ".btn.save", handleNoteSave);
   $(document).on("click", ".btn.note-delete", handleNoteDelete);
 
-  initPage();
+  // initPage();
 
   function initPage() {
     articleContainer.empty();
     $.get("/api/headlines?saved=true").then(function(data) {
       //if we have headlines, render them to the page
       if (data && data.length) {
-        renderArticles(data);
+        // renderArticles(data);
       } else {
-        renderEmpty();
+        // renderEmpty();
       }
     });
   }
@@ -25,9 +25,9 @@ $(document).ready(function() {
     //Passed an array of JSON w/ all available articles in the database
     var articlePanels = [];
     for (let i = 0; i < articles.length; i++) {
-      articlePanels.push(createPanel(articles[i]));
+      // articlePanels.push(createPanel(articles[i]));
     }
-    articleContainer.append(articlePanels);
+    // articleContainer.append(articlePanels);
   }
 
   function createPanel(article) {
@@ -43,8 +43,7 @@ $(document).ready(function() {
       </div>
     </div>
     `;
-    //   panel.join("");
-    panel.data("_id", article._id);
+    // panel.data("_id", article._id);
     return panel;
   }
 
@@ -54,14 +53,14 @@ $(document).ready(function() {
       <div class= "alert alert-warning text-center>
         <h4>There are no saved articles</h4>
       </div> 
-      <div class="card" style="width: 17em;">
+      <div class="card" style="width: 100%;">
         <div class="card-body">
             <h3 class="card-title">Would you like to browse available articles??</h3>
             <h4><a class="btn btn-success scrape-new" href="/>Browse New Articles</a></h4>
         </div>
       </div>
       `;
-    articleContainer.append(emptyAlert);
+    // articleContainer.append(emptyAlert);
   }
 
   function renderNotesList(data) {
@@ -74,7 +73,7 @@ $(document).ready(function() {
           <li class="list-group-item note">No notes for this article yet</li>
           `
       ];
-      notesToRender.push(currentNote);
+      // notesToRender.push(currentNote);
     } else {
       for (let i = 0; i < data.notes.length; i++) {
         currentNote = $([
@@ -82,11 +81,11 @@ $(document).ready(function() {
             <li class="list-group-item note">${data.notes[i].noteText}<button class="btn btn-danger note-delete>x</button></li>
             `
         ]);
-        currentNote.children("button").data("_id", data.notes[i]._id);
-        notesToRender.push(currentNote);
+        // currentNote.children("button").data("_id", data.notes[i]._id);
+        // notesToRender.push(currentNote);
       }
     }
-    $(".note-container").append(notesToRender); //did I make a note container?
+    // $(".note-container").append(notesToRender); //did I make a note container?
   }
 
   function handleArticleDelete() {
@@ -101,7 +100,7 @@ $(document).ready(function() {
     }).then(function(data) {
       //if successful, Mongoose sends back the data as an object, with a "ok: 1", 1 meaning true
       if (data.ok) {
-        initPage();
+        // initPage();
       }
     });
   }
@@ -135,8 +134,8 @@ $(document).ready(function() {
         notes: data || []
       };
       //add info to the button
-      $(".btn.save").data("article", noteData);
-      renderNotesList(noteData);
+      // $(".btn.save").data("article", noteData);
+      // renderNotesList(noteData);
     });
   }
 
@@ -154,7 +153,7 @@ $(document).ready(function() {
       };
       $.post("/api/notes", noteData).then(function() {
         //when complete, hide the modal
-        bootbox.hideAll();
+        // bootbox.hideAll();
       });
     }
   }
@@ -168,7 +167,7 @@ $(document).ready(function() {
       method: "DELETE"
     }).then(function() {
       //when finished, hide the modal
-      bootbox.hideAll();
+      // bootbox.hideAll();
     });
   }
 });
