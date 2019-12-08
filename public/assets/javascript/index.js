@@ -1,7 +1,7 @@
 $(document).ready(function() {
   //Set a reference to the article container div where all the dynamic content will go
   var articleContainer = $(".article-container");
-  $(document).on("click", ".btn.save", handleArticleSave);
+  $(document).on("click", ".save", handleArticleSave);
   $(document).on("click", ".scrape-new", handleArticleScrape);
 
   initPage();
@@ -34,15 +34,16 @@ $(document).ready(function() {
     //Takes in a single JSON object (article/headline) and adds it to the DOM
     var panel = `
       <div class="card" style="width: 100%;">
-        <div class="card-body">
+        <div class="card-body text-center">
             <h3 class="card-title">${article.headline}
-                <a class="btn btn-success save">Save Article</a>
             </h3>
+            <hr>
+            <p class="card-text"><a href="${article.url}" target="_blank">${article.url}<a></p>
             <p class="card-text">${article.summary}</p>
+            <a class="btn btn-success save">Save Article</a>
         </div>
       </div>
       `;
-    //   panel.join("");
     // panel.data("_id", article._id);
     return panel;
   }

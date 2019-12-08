@@ -42,7 +42,7 @@ const scrape = function(cb) {
         .trim();
 
       if (!summary) {
-        summary += "Summary Unavailable";
+        summary = " ";
       }
       if (!url) {
         url += "URL Unavailable";

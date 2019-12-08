@@ -18,13 +18,9 @@ module.exports = function(router) {
   //api route to fetch the articles- calls the fetch function within headlines.js. Then it alerts the user of how many articles it added
   router.get("/api/fetch", function(req, res) {
     headlinesController.fetch(function(err, doc) {
-      //NOTE: may need to define insertedCount (articles.length?)
-      // console.log(docs);
-      // console.log(err);
-      // console.log(req);
       if (!doc || Object.keys(doc).length === 0) {
         res.json({
-          message: "No new articles today."
+          message: "No new articles today." //doesn't render
         });
       } else {
         res.json({
