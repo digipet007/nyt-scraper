@@ -33,7 +33,7 @@ $(document).ready(function() {
   function createPanel(article) {
     //Takes in a single JSON object (article/headline) and adds it to the DOM
     var panel = `
-      <div class="card" style="width: 100%;">
+      <div class="card" style="width: 100%;" data-name="${article._id}">
         <div class="card-body text-center">
             <h3 class="card-title">${article.headline}
             </h3>
@@ -44,7 +44,7 @@ $(document).ready(function() {
         </div>
       </div>
       `;
-    // panel.data("_id", article._id);
+    // $(".card").data("_id", article._id);
     return panel;
   }
 
@@ -68,19 +68,46 @@ $(document).ready(function() {
 
   function handleArticleSave() {
     //triggered on click of save article function, using the headline id created above with panel.data("_id", article._id);
+    // var articleToSave = $(this)
+    // .parents(".article-container")
+    // .data();
     var articleToSave = $(this)
-      .parents(".article-container")
-      .data();
-    articleToSave.saved = true;
+      .parents(".card")
+      .attr("data-name");
+    var newArticleToSave = {
+      _id: articleToSave
+    };
+    console.log("======================================");
+    console.log(
+      "articleToSave, or article ID from index.js handleArticleSave:"
+    );
+    console.log(articleToSave);
+    console.log("======================================");
+    console.log(
+      "newArticleToSave, or article ID from index.js handleArticleSave:"
+    );
+    console.log(newArticleToSave);
+    // articleToSave.saved = true;
+
+    // Remove card from page
+    $(this)
+      .parents(".card")
+      .remove();
+
+    // $.get("/api/headlines?saved=false").then(function(data) {
+    //   console.log(data);
+    // });
+
     //Since this is an update to an existing article, I am using the semantic patch method
     $.ajax({
-      method: "PATCH",
-      url: "/api/headlines",
-      data: articleToSave
+      method: "PUT",
+      url: "/api/headlines/" + articleToSave,
+      data: newArticleToSave
     }).then(function(data) {
       // if successful, Mongoose sends back the data as an object, with a "ok: 1", 1 meaning true
       if (data.ok) {
-        initPage();
+        // initPage();
+        console.log(data.ok);
       }
     });
   }

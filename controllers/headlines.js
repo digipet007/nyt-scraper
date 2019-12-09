@@ -1,9 +1,9 @@
 //Require scraping and date functions
-var scrape = require("../scripts/scrape");
-var makeDate = require("../scripts/date");
+const scrape = require("../scripts/scrape");
+const makeDate = require("../scripts/date");
 
 //Require Headline and Mongoose Models
-var Headline = require("../models/Headline");
+const Headline = require("../models/Headline");
 
 module.exports = {
   //fetch will run the scrape function and grab all articles and insert them into Headline collection in Mongo DB, setting saved to false
@@ -39,16 +39,20 @@ module.exports = {
   },
   //Update function updates any new articles that are scraped with a relevant id, and updates any information that's passed to those articles with the same id
   update: function(query, cb) {
-    Headline.update(
-      { _id: query._id },
-      { $set: query },
-      { $set: query },
-      { $set: query },
-      { $set: query }
-    );
-    // .exec(function(query, cb) {
-    cb(results);
-    // });
+    console.log("======================================");
+    console.log("query from headlines.js update method:");
+    console.log(query);
+    // Headline.updateOne({ _id: query }, { $set: { saved: true } }, cb()).exec(
+    Headline.findOneAndUpdate(
+      { _id: query },
+      { $set: { saved: true } },
+      { new: true }
+    ).exec(function(err, doc) {
+      console.log("======================================");
+      console.log("doc from headlines.js update method:");
+      console.log(doc);
+      cb(doc);
+    });
   }
 };
 

@@ -4,6 +4,7 @@ const scrape = require("../scripts/scrape");
 //Require headlines and notes controllers
 const headlinesController = require("../controllers/headlines");
 const notesController = require("../controllers/notes");
+const Headline = require("../models/Headline");
 
 module.exports = function(router) {
   //render hompage route
@@ -45,17 +46,26 @@ module.exports = function(router) {
   //api route deletes headline with specific id
   router.delete("/api/headlines/:id", function(req, res) {
     var queryId = {};
-    queryId = req.params.id;
+    console.log("======================================");
+    console.log("req.body._id from routes.js router.delete api/headlines:");
+    console.log(req.body._id);
     //NOTE: I changed the param here from query to query._id
-    headlinesController.delete(queryId, function(err, data) {
+    headlinesController.delete(req.body._id, function(err, data) {
       res.json(data);
     });
   });
 
   //Route updates headlines, as needed. Runs headlines controller update function on whatever the user sends in their request
   //NOTE: patch??
-  router.patch("/api/headlines", function(req, res) {
-    headlinesController.update(req.body, function(err, data) {
+  router.put("/api/headlines/:id", function(req, res) {
+    console.log("======================================");
+    console.log("req.body._id from routes.js api/headlines:");
+    console.log(req.body._id);
+    headlinesController.update(req.body._id, function(err, data) {
+      ///problem: cannot return data from doc
+      console.log("======================================");
+      console.log("data from routes.js api/headlines:");
+      console.log(data); //data is undefined
       res.json(data);
     });
   });
