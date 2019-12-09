@@ -156,6 +156,10 @@ textarea {
   bottom: 10px;
 }
 
-.save {
+.right-float {
   float: right;
+}
+
+.delete {
+  margin-left: 1em;
 }

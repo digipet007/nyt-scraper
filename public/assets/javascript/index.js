@@ -40,7 +40,7 @@ $(document).ready(function() {
             <hr>
             <p class="card-text"><a href="${article.url}" target="_blank">${article.url}<a></p>
             <p class="card-text">${article.summary}</p>
-            <a class="btn btn-success save">Save Article</a>
+            <a class="btn btn-success right-float save">Save Article</a>
         </div>
       </div>
       `;
@@ -94,10 +94,6 @@ $(document).ready(function() {
       .parents(".card")
       .remove();
 
-    // $.get("/api/headlines?saved=false").then(function(data) {
-    //   console.log(data);
-    // });
-
     //Since this is an update to an existing article, I am using the semantic patch method
     $.ajax({
       method: "PUT",
@@ -109,6 +105,11 @@ $(document).ready(function() {
         // initPage();
         console.log(data.ok);
       }
+    });
+    $.get("/api/headlines?saved=true").then(function(data) {
+      console.log("=====================================================");
+      console.log("saved headlines: ");
+      console.log(data);
     });
   }
 
