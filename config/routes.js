@@ -4,7 +4,6 @@ const scrape = require("../scripts/scrape");
 //Require headlines and notes controllers
 const headlinesController = require("../controllers/headlines");
 const notesController = require("../controllers/notes");
-const Headline = require("../models/Headline");
 
 module.exports = function(router) {
   //render hompage route
@@ -37,7 +36,6 @@ module.exports = function(router) {
     if (req.query.saved) {
       query = req.query;
     }
-
     headlinesController.get(query, function(data) {
       res.json(data);
     });
@@ -45,10 +43,9 @@ module.exports = function(router) {
 
   //api route deletes headline with specific id
   router.put("/api/headlines/delete/:id", function(req, res) {
-    var queryId = {};
-    console.log("======================================");
-    console.log("req.body._id from routes.js router.delete api/headlines:");
-    console.log(req.body._id);
+    // console.log("======================================");
+    // console.log("req.body._id from routes.js router.delete api/headlines:");
+    // console.log(req.body._id);
     headlinesController.delete(req.body._id, function(err, data) {
       res.json(data);
     });
@@ -57,17 +54,18 @@ module.exports = function(router) {
   //Route updates headlines, as needed. Runs headlines controller update function on whatever the user sends in their request
   //NOTE: patch??
   router.put("/api/headlines/:id", function(req, res) {
-    console.log("======================================");
-    console.log("req.body._id from routes.js api/headlines:");
-    console.log(req.body._id);
+    // console.log("======================================");
+    // console.log("req.body._id from routes.js api/headlines:");
+    // console.log(req.body._id);
     headlinesController.update(req.body._id, function(err, data) {
       ///problem: cannot return data from doc
-      console.log("======================================");
-      console.log("data from routes.js api/headlines:");
-      console.log(data); //data is undefined
+      // console.log("======================================");
+      // console.log("data from routes.js api/headlines:");
+      // console.log(data); //data is undefined
       res.json(data);
     });
   });
+
   //Route grabs all notes associated with an article to display to user
   //Runs route on notes associated with headline id
   router.get("/api/notes/:headline", function(req, res) {
@@ -85,7 +83,7 @@ module.exports = function(router) {
   router.delete("/api/notes/:id", function(req, res) {
     var queryId = {};
     queryId = req.params.id;
-    notesController.delete(query, function(err, data) {
+    notesController.delete(req.params.id, function(err, data) {
       res.json(data);
     });
   });

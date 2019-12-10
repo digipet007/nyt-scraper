@@ -15,7 +15,6 @@ module.exports = {
         articles[i].saved = false;
       }
       //Mongo function- the callback in insertMany allows the function to skip over any failed articles and continue loading
-      // Headline.collection.insertMany(articles, { ordered: false }, function(
       Headline.insertMany(articles, { ordered: false }, function(err, docs) {
         //return any errors in the docs
         cb(err, docs);
@@ -24,18 +23,17 @@ module.exports = {
   },
   //Delete function allows the queried headline to be removed
   delete: function(query, cb) {
-    console.log("==================");
-    console.log("headlines.js delete function query: ");
-    console.log(query);
-
+    // console.log("==================");
+    // console.log("headlines.js delete function query: ");
+    // console.log(query);
     Headline.findOneAndUpdate(
       { _id: query },
       { $set: { saved: false } },
       { new: true }
     ).exec(function(err, doc) {
-      console.log("======================================");
-      console.log("doc from headlines.js update/delete method:");
-      console.log(doc);
+      // console.log("======================================");
+      // console.log("doc from headlines.js update/delete method:");
+      // console.log(doc);
       cb(doc);
     });
 
@@ -59,31 +57,19 @@ module.exports = {
   },
   //Update function updates any new articles that are scraped with a relevant id, and updates any information that's passed to those articles with the same id
   update: function(query, cb) {
-    console.log("======================================");
-    console.log("query from headlines.js update method:");
-    console.log(query);
+    // console.log("======================================");
+    // console.log("query from headlines.js update method:");
+    // console.log(query);
     // Headline.updateOne({ _id: query }, { $set: { saved: true } }, cb()).exec(
     Headline.findOneAndUpdate(
       { _id: query },
       { $set: { saved: true } },
       { new: true }
     ).exec(function(err, doc) {
-      console.log("======================================");
-      console.log("doc from headlines.js update method:");
-      console.log(doc);
+      // console.log("======================================");
+      // console.log("doc from headlines.js update method:");
+      // console.log(doc);
       cb(doc);
     });
   }
 };
-
-//   update: function(query, cb) {
-//     Headline.update(
-//       { _id: query._id },
-//       {
-//         $set: query
-//       },
-//       {},
-//       cb
-//     );
-//   }
-// };
