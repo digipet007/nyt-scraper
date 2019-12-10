@@ -24,7 +24,17 @@ module.exports = {
   },
   //Delete function allows the queried headline to be removed
   delete: function(query, cb) {
-    Headline.remove(query, cb);
+    console.log("==================");
+    console.log("headlines.js delete function query: ");
+    console.log(query);
+    // Headline.remove(query, cb);
+    // Headlines.findOneAndRemove({ _id: query }, function(err, doc) {
+    Headline.findOneAndDelete({ _id: query }).exec(function(err, doc) {
+      console.log("======================================");
+      console.log("doc from headlines.js findOneAndDelete method:");
+      console.log(doc);
+      cb(doc);
+    });
   },
   //find all the headlines in a query and sort them from most recent to least recent
   get: function(query, cb) {

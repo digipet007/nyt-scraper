@@ -49,7 +49,6 @@ module.exports = function(router) {
     console.log("======================================");
     console.log("req.body._id from routes.js router.delete api/headlines:");
     console.log(req.body._id);
-    //NOTE: I changed the param here from query to query._id
     headlinesController.delete(req.body._id, function(err, data) {
       res.json(data);
     });

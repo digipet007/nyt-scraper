@@ -1,3 +1,5 @@
+// const bootbox = require("bootbox");
+
 $(document).ready(function() {
   //Set a reference to the article container div where all the dynamic content will go
   var articleContainer = $(".saved-article-container");
@@ -33,18 +35,18 @@ $(document).ready(function() {
   function createPanel(article) {
     //Takes in a single JSON object (article/headline) and adds it to the DOM, when called in renderArticles
     var panel = `
-    <div class="card" style="width: 100%;" data-name="${article._id}">
+    <div class="card" style="width: 100%;" data-name="${article._id}" data-article-name="${article.headline}">
       <div class="card-body">
           <h3 class="card-title">${article.headline}
-              <a class="btn btn-danger delete">Delete From Saved</a>
-              <a class="btn btn-info notes">Article Notes</a>
           </h3>
+          <hr>
+          <p class="card-text"><a href="${article.url}" target="_blank">${article.url}<a></p>
           <p class="card-text">${article.summary}</p>
+          <a class="btn btn-danger right-float delete">Delete From Saved</a>
+          <a class="btn btn-info right-float notes">Article Notes</a>
       </div>
     </div>
     `;
-    // $(".card").data("_id", article._id);
-    // panel.attr("_id", article._id);
     return panel;
   }
 
@@ -69,6 +71,11 @@ $(document).ready(function() {
     //renders note list items in notes modal
     var notesToRender = [];
     var currentNote;
+    console.log("============================================");
+    console.log("data for notes from saved.js: ");
+    console.log(data);
+    console.log(data.notes);
+
     if (!data.notes.length) {
       currentNote = [
         `
@@ -80,17 +87,13 @@ $(document).ready(function() {
       for (let i = 0; i < data.notes.length; i++) {
         currentNote = $([
           `
-            <li class="list-group-item note">${data.notes[i].noteText}<button class="btn btn-danger note-delete" data-name="${data.notes[i]._id}">x</button></li>
+            <li class="list-group-item note">${data.notes[i].noteText}<button class="btn btn-danger note-delete" data-id="${data.notes[i]._id}" data-name="${data.notes[i].noteText}">x</button></li>
             `
         ]);
-        // $(".note")
-        //   .children("button")
-        //   .data("_id", data.notes[i]._id);
-        // currentNote.children("button").attr("_id", data.notes[i]._id);
         notesToRender.push(currentNote);
       }
     }
-    // $(".note-container").append(notesToRender); //did I make a note container?
+    //$(".note-container").append(notesToRender); //did I make a note container?
   }
 
   function handleArticleDelete() {
@@ -118,44 +121,58 @@ $(document).ready(function() {
     }).then(function(data) {
       //if successful, Mongoose sends back the data as an object, with a "ok: 1", 1 meaning true
       if (data.ok) {
-        initPage();
+        // initPage();
       }
     });
   }
 
   function handleArticleNotes() {
     //append notes and display notes
-    //Triggered by clicking scrape new article buttons
-    //go to the api fetch route, run the init page function again to reload new articles
-    var currentArticle = $(this)
-      .parents(".card")
+    //Triggered by clicking article notes button
+    //go to the api notes route, to get the notes
+
+    //note stored in button - move this
+    var currentNote = $(this)
+      .parents(".card") //change this
       .attr("data-name");
+    var currentNoteId = $(this)
+      .parents(".card") //change this
+      .attr("data-id");
+
+    var currentArticleId = $(this)
+      .parents(".card")
+      .attr("data-id");
+
+    var currentArticleHeadline = $(this)
+      .parents(".card")
+      .attr("data-article-name");
 
     //grab notes with particular headline/article id
-    $.get("/api/notes/" + currentArticle._id).then(function(data) {
+    $.get("/api/notes/" + currentArticleId).then(function(data) {
+      var note = data || [];
       var modalText = [
         `
         <div class="container-fluid text-center">
-            <h4>Notes for Article: ${currentArticle._id}</h4>
+            <h4>Notes for Article: ${currentArticleHeadline}</h4>
             <hr>
             <ul class="container-fluid text-center"></ul>
             <textarea placeholder="New Note" rows="4" cols="60"></textarea>
-            <button class="btn btn-success note-save">Save Note</button>
+            <button class="btn btn-success note-save" data-id="${currentArticleId}" data-notes="${note}">Save Note</button>
         </div>
         `
       ];
-      bootbox.dialog({
-        message: modalText,
-        closeButton: true
-      });
+      // bootbox.dialog({
+      //   message: modalText,
+      //   closeButton: true
+      // });
       var noteData = {
-        _id: currentArticle._id,
-        notes: data || []
+        _id: currentArticleId,
+        notes: note
       };
       //add info to the button
-      $(".btn.save").data("article", noteData);
+      // $(".note-save").data("article", noteData);
       // $(".btn.save").attr("article", noteData);
-      // renderNotesList(noteData);
+      renderNotesList(noteData);
     });
   }
 
