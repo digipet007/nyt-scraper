@@ -44,7 +44,7 @@ module.exports = function(router) {
   });
 
   //api route deletes headline with specific id
-  router.delete("/api/headlines/:id", function(req, res) {
+  router.put("/api/headlines/delete/:id", function(req, res) {
     var queryId = {};
     console.log("======================================");
     console.log("req.body._id from routes.js router.delete api/headlines:");

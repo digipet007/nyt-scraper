@@ -115,8 +115,8 @@ $(document).ready(function() {
       .remove();
 
     $.ajax({
-      method: "DELETE",
-      url: "/api/headlines/" + articleToDelete,
+      method: "PUT",
+      url: "/api/headlines/delete/" + articleToDelete,
       data: newArticleToDelete
     }).then(function(data) {
       //if successful, Mongoose sends back the data as an object, with a "ok: 1", 1 meaning true
