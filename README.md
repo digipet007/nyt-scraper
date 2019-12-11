@@ -4,7 +4,7 @@
 
 The New York Times Scraper is a web app that lets users view and leave comments on the latest news. It was built with MongoDB, Mongoose, Node, Express, and Handlebars.
 
-![demo](demo/nytscraper1.gif)
+![demo](demo/nytscraper2.gif)
 
 For a demo of the app, visit: <https://aqueous-castle-58496.herokuapp.com>
 
