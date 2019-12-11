@@ -39,8 +39,7 @@ $(document).ready(function() {
     var panel = `
     <div class="card" style="width: 100%;" data-name="${article._id}" data-article-name="${article.headline}">
       <div class="card-body">
-          <h3 class="card-title">${article.headline}
-          </h3>
+          <h3 class="card-title">${article.headline}</h3>
           <hr>
           <p class="card-text"><a href="${article.url}" target="_blank">${article.url}<a></p>
           <p class="card-text">${article.summary}</p>
@@ -52,11 +51,6 @@ $(document).ready(function() {
           </div>
           `;
 
-    // <a class="btn btn-info right-float notes" data-toggle="modal" data-target=".bs-example-modal-sm2">Article Notes</a>
-    // data-placement="auto bottom"
-    // data-trigger="click">Article Notes</a>
-
-    // <a class="btn btn-info right-float notes" id="elem" rel="popover" data-html="true"
     return panel;
   }
 
@@ -97,64 +91,17 @@ $(document).ready(function() {
       data: newArticleToDelete
     }).then(function(data) {
       //if successful, Mongoose sends back the data as an object, with a "ok: 1", 1 meaning true
-      // initPage();
-      // if (!data || !data.length) {
-      //   renderEmpty();
-      // }
     });
     // location.reload();
     initPage();
   }
 
   function renderNotesList(note) {
-    //renders note list items in notes modal
-    // console.log("=============================");
-    // console.log("Note FOR AJAX CALL");
-    // console.log(note);
-    // console.log("=============================");
-    // console.log("IT NEEDS TO TRANSFER HERE");
-    // console.log(note);
-    // var notesToRender;
-    // var currentNote;
-
-    // var noteList = $("#noted-stuff");
-
-    // $.ajax({
-    //   method: "GET",
-    //   url: "/api/notes/"+note,
-    //   data: note
-    // }).then(function(data) {
-    //   console.log("++++++++++++++++++++++++++");
-    //   console.log("THERE BETTER BE DATA HERE:");
-    //   console.log(data);
-
-    // for (var key in note) {
     var currentNote = $(`
           <div class="container-fluid note"><li>${note.noteText}<button class="btn btn-danger right-float note-delete" data-id="${note._id}" data-name="${note.noteText}">x</button></li></div>
       `);
 
     return currentNote;
-    // noteList.append(currentNote);
-    // }
-
-    // var noteList = $("#noted-stuff");
-
-    // if (note.length === 0) {
-    //   currentNote = $(`
-    //       <li class="list-group-item note">No notes for this article yet</li>
-    //       `);
-
-    // notesToRender += currentNote;
-    // } else {
-
-    // var currentNote = $(`
-    //         <div class="container-fluid><li note">${note.noteText}<button class="btn btn-danger right-float note-delete" data-id="${note._id}" data-name="${note.noteText}">x</button></li></div>
-    //         `);
-
-    // notesToRender += currentNote;
-    // }
-    // }
-    // modal.prepend(notesToRender);
   }
 
   function renderNotes(theNotes) {
@@ -185,22 +132,11 @@ $(document).ready(function() {
     console.log("currentArticleHeadline from saved.js: ");
     console.log(currentArticleHeadline);
 
-    // $.ajax({
-    //   method: "GET",
-    //   url: "/api/notes/" + currentArticleId,
-    //   data: currentArticleId
-    // }).then(function(err, maybedata) {
-    //   console.log("================================");
-    //   console.log("WILL THE DATA EVER RETURN FROM A GET?");
-    //   console.log(maybedata);
-    // });
     var url = `/api/notes/${currentArticleId}`;
 
     $.get(url, {
       data: currentArticleId
-      // type: "premium"
     }).then(function(response) {
-      // alert("success");
       renderNotes(response);
     });
 
