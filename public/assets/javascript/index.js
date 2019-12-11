@@ -94,7 +94,8 @@ $(document).ready(function() {
     //go to the api fetch route, run the init page function again to reload new articles
     $.get("/api/fetch").then(function(data) {
       initPage();
-      bootbox.alert(data.message);
+      // bootbox.alert(data.message);
+      alert(data.message);
     });
   }
 });
