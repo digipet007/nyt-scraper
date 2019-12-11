@@ -44,7 +44,6 @@ $(document).ready(function() {
         </div>
       </div>
       `;
-    // $(".card").data("_id", article._id);
     return panel;
   }
 
@@ -68,26 +67,12 @@ $(document).ready(function() {
 
   function handleArticleSave() {
     //triggered on click of save article function, using the headline id created above with panel.data("_id", article._id);
-    // var articleToSave = $(this)
-    // .parents(".article-container")
-    // .data();
     var articleToSave = $(this)
       .parents(".card")
       .attr("data-name");
     var newArticleToSave = {
       _id: articleToSave
     };
-    // console.log("======================================");
-    // console.log(
-    //   "articleToSave, or article ID from index.js handleArticleSave:"
-    // );
-    // console.log(articleToSave);
-    // console.log("======================================");
-    // console.log(
-    //   "newArticleToSave, or article ID from index.js handleArticleSave:"
-    // );
-    // console.log(newArticleToSave);
-    // articleToSave.saved = true;
 
     // Remove card from page
     $(this)
@@ -101,28 +86,15 @@ $(document).ready(function() {
       data: newArticleToSave
     }).then(function(data) {
       // if successful, Mongoose sends back the data as an object, with a "ok: 1", 1 meaning true
-      // if (data) {
-      // initPage();
-      // console.log(data.ok);
-      // location.reload();
-      // }
     });
-    // $.get("/api/headlines?saved=true").then(function(data) {
-    //   console.log("=====================================================");
-    //   console.log("saved headlines: ");
-    //   console.log(data);
-    // });
   }
 
   function handleArticleScrape() {
     //Triggered by clicking scrape new article buttons
     //go to the api fetch route, run the init page function again to reload new articles
-    //alert data.message, from router function, alerts the user how many articles were saved
     $.get("/api/fetch").then(function(data) {
       initPage();
-      // console.log(data.message);
       bootbox.alert(data.message);
-      // alert(data.message);
     });
   }
 });
