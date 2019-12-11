@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-var headLineSchema = new Schema({
+const headLineSchema = new Schema({
   headline: {
     type: String,
     required: true,
@@ -23,23 +23,6 @@ var headLineSchema = new Schema({
   }
 });
 
-// var headLineSchema = new Schema({
-//   headline: {
-//     type: String,
-//     required: true,
-//     unique: true
-//   },
-//   summary: {
-//     type: String,
-//     required: true
-//   },
-//   date: String,
-//   saved: {
-//     type: Boolean,
-//     default: false
-//   }
-// });
-
-var Headline = mongoose.model("Headline", headLineSchema);
+const Headline = mongoose.model("Headline", headLineSchema);
 
 module.exports = Headline;
