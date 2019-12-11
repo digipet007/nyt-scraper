@@ -5,18 +5,26 @@ var makeDate = require("../scripts/date");
 module.exports = {
   //Get function will grab all notes asociated with the articles- specifically, their headline ID. These are user-created notes.
   get: function(data, cb) {
-    Note.find(
-      {
-        _headLineId: data._id
-      },
-      cb
-    );
+    console.log("========================");
+    console.log("notes.js get function data :");
+    console.log(data);
+    Note.find({ _headlineId: data.id }).exec(function(err, doc) {
+      console.log("========================");
+      console.log("notes.js note.find callback doc :");
+      console.log(doc);
+      cb(doc);
+
+      // Note.find({ _id: data }, function(err, docs) {
+      //   console.log("========================");
+      //   console.log("notes.js get function's callback doc :");
+      //   console.log(docs);
+      // });
+    });
   },
   //Save function
   save: function(data, cb) {
-    //Object has headline ID associated with the note that is being created, the date from the makeDate function, and the note text, which is what the user typed in
     var newNote = {
-      _headLineId: data._id,
+      _headlineId: data._id,
       date: makeDate(),
       noteText: data.noteText
     };
@@ -25,6 +33,7 @@ module.exports = {
       if (err) {
         console.log(err);
       } else {
+        console.log("==================");
         console.log(doc);
         cb(doc);
       }
@@ -32,11 +41,14 @@ module.exports = {
   },
   //Delete function removes the note associated with that article
   delete: function(data, cb) {
-    Note.remove(
-      {
-        _id: data._id
-      },
-      cb
-    );
+    console.log("===============================");
+    console.log("notes.js delete data");
+    console.log(data.noteText);
+    Note.findOneAndDelete({ noteText: data.noteText }).exec(function(err, doc) {
+      console.log("======================================");
+      console.log("doc from notes.js findOneAndDelete method:");
+      console.log(doc);
+      cb(doc);
+    });
   }
 };

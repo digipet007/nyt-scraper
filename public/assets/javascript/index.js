@@ -77,16 +77,16 @@ $(document).ready(function() {
     var newArticleToSave = {
       _id: articleToSave
     };
-    console.log("======================================");
-    console.log(
-      "articleToSave, or article ID from index.js handleArticleSave:"
-    );
-    console.log(articleToSave);
-    console.log("======================================");
-    console.log(
-      "newArticleToSave, or article ID from index.js handleArticleSave:"
-    );
-    console.log(newArticleToSave);
+    // console.log("======================================");
+    // console.log(
+    //   "articleToSave, or article ID from index.js handleArticleSave:"
+    // );
+    // console.log(articleToSave);
+    // console.log("======================================");
+    // console.log(
+    //   "newArticleToSave, or article ID from index.js handleArticleSave:"
+    // );
+    // console.log(newArticleToSave);
     // articleToSave.saved = true;
 
     // Remove card from page
@@ -94,23 +94,24 @@ $(document).ready(function() {
       .parents(".card")
       .remove();
 
-    //Since this is an update to an existing article, I am using the semantic patch method
+    //Since this is an update to an existing article
     $.ajax({
       method: "PUT",
       url: "/api/headlines/" + articleToSave,
       data: newArticleToSave
     }).then(function(data) {
       // if successful, Mongoose sends back the data as an object, with a "ok: 1", 1 meaning true
-      if (data.ok) {
-        // initPage();
-        console.log(data.ok);
-      }
+      // if (data) {
+      // initPage();
+      // console.log(data.ok);
+      // location.reload();
+      // }
     });
-    $.get("/api/headlines?saved=true").then(function(data) {
-      console.log("=====================================================");
-      console.log("saved headlines: ");
-      console.log(data);
-    });
+    // $.get("/api/headlines?saved=true").then(function(data) {
+    //   console.log("=====================================================");
+    //   console.log("saved headlines: ");
+    //   console.log(data);
+    // });
   }
 
   function handleArticleScrape() {
@@ -119,8 +120,9 @@ $(document).ready(function() {
     //alert data.message, from router function, alerts the user how many articles were saved
     $.get("/api/fetch").then(function(data) {
       initPage();
-      console.log(data.message);
-      alert(data.message);
+      // console.log(data.message);
+      bootbox.alert(data.message);
+      // alert(data.message);
     });
   }
 });

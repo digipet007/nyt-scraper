@@ -57,18 +57,18 @@ module.exports = {
   },
   //Update function updates any new articles that are scraped with a relevant id, and updates any information that's passed to those articles with the same id
   update: function(query, cb) {
-    // console.log("======================================");
-    // console.log("query from headlines.js update method:");
-    // console.log(query);
+    console.log("======================================");
+    console.log("query from headlines.js update method:");
+    console.log(query);
     // Headline.updateOne({ _id: query }, { $set: { saved: true } }, cb()).exec(
     Headline.findOneAndUpdate(
       { _id: query },
       { $set: { saved: true } },
       { new: true }
     ).exec(function(err, doc) {
-      // console.log("======================================");
-      // console.log("doc from headlines.js update method:");
-      // console.log(doc);
+      console.log("======================================");
+      console.log("doc from headlines.js update method:");
+      console.log(doc);
       cb(doc);
     });
   }
