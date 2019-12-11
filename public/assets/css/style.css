@@ -73,37 +73,6 @@ body {
   margin: 20px 0;
 }
 
-/* .card .card-header {
-  background-color: #2196f3;
-  position: relative;
-  padding-top: 30px;
-  padding-bottom: 30px;
-} */
-/* 
-.card .card-header h3 {
-  color: white;
-}
-
-.card .card-header .btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.card .card-header .btn.delete {
-  right: 160px;
-}
-
-.card .card-body {
-  font-size: 16px;
-}
-
-.card .card-header .article-link {
-  color: white;
-  display: inline-block;
-  width: 80%;
-} */
-
 /* footer styling */
 .footer > .container > p {
   position: absolute;
@@ -146,11 +115,6 @@ textarea {
   width: 100%;
 }
 
-/* .bootbox-body .btn {
-  float: right;
-  margin: 5px;
-} */
-
 .note {
   padding: 10px;
   resize: none;
@@ -165,11 +129,6 @@ textarea {
 .right-float {
   float: right;
 }
-
-/* .close {
-  top: 0;
-  right: 0;
-} */
 
 .delete {
   margin-left: 1em;

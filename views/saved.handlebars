@@ -2,10 +2,10 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Mongo Scraper</a>
   <ul class="navbar-nav">
-    <li class="nav-item">
+    <li class="nav-item active">
     <a class="nav-link" href="/">Home</a>
     </li>
-    <li class="nav-item active">
+    <li class="nav-item">
     <a class="nav-link" href="/saved">Saved Articles<span class="sr-only">(current)</span></a>
     </li>
 </nav>
@@ -20,4 +20,27 @@
     </div>
 </div>
 
+{{!-- Modal --}}
+{{!-- <div class="modal fade bs-example-modal-sm2" id="my-modal"> --}}
+<div class="hidden" id="my-modal">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-header">
+      <button type="button" class="close closer right-float">&times;</button>
+      <h4 class="card-title text-center">Article Notes</h4>
+      <h5 id="article-title text-center"></h5>
+    </div>
+    <div class="card-body" id="appendModalBody">
+      <ul id="noted-stuff"></ul>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-default closer right-float" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+{{!-- <div id="popover-container"></div> --}}
+
+{{!-- Saved articles go here --}}
 <div class="container-fluid saved-article-container"></div>
