@@ -38,7 +38,7 @@ $(document).ready(function() {
     //Takes in a single JSON object (article/headline) and adds it to the DOM, when called in renderArticles
     var panel = `
     <div class="card" style="width: 100%;" data-name="${article._id}" data-article-name="${article.headline}">
-      <div class="card-body">
+      <div class="card-body text-center">
           <h3 class="card-title">${article.headline}</h3>
           <hr>
           <p class="card-text"><a href="${article.url}" target="_blank">${article.url}<a></p>

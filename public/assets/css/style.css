@@ -130,6 +130,10 @@ textarea {
   float: right;
 }
 
+.delete .notes {
+  margin-top: 5px;
+}
+
 .delete {
   margin-left: 1em;
 }
@@ -139,9 +143,19 @@ textarea {
   top: 5%;
   right: 25%;
   z-index: 1000;
-  width: 50%;
+  width: 400px;
+  box-shadow: 3px 3px 20px lightslategrey;
   /* height: 35%; */
   /* overflow: scroll; */
+}
+
+.note-delete {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.card-footer {
+  padding-top: 0;
 }
 
 #moodChange {
@@ -157,4 +171,41 @@ textarea {
 
 .hidden {
   display: none;
+}
+
+/* add media query for modal */
+@media only screen and (max-width: 600px) {
+  .jumbotron .background-image .overlay{
+    height: 100px;
+    padding-top: 0;
+  }
+  
+  h1 .display-4 .caption {
+    top: 0%;
+    font-size: 60px;
+    font-weight: 700;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  #my-modal {
+    top: 1%;
+    right: 1%;
+    width: 98%;
+    height: 98%;
+  }
+
+  .card-body > .btn {
+    margin-top: 5px;
+  }
+
+  .notes .delete {
+    margin: 2px 0 0 0;
+  }
+
+  .navbar-nav > li > a.scrape-new {
+    margin-left: 0;
+  }
 }
