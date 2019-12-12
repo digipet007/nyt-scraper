@@ -6,7 +6,7 @@ The New York Times Scraper is a web app that lets users view and leave comments 
 
 ![demo](demo/ntyscraper2.gif)
 
-For a demo of the app, visit: <https://aqueous-castle-58496.herokuapp.com>
+For a demo of the app, visit: <https://limitless-reaches-64367.herokuapp.com>
 
 ### Prerequisites
 
@@ -42,7 +42,7 @@ Then go to the following URL in your browser: `localhost:8080`
 You should be able to scrape new articles, save them, and add/remove notes.
 
 ## Deployment and General Use
-This app can be deployed to a server, such as Heroku or AWS, for online use from different users in different locations. To store data input, you will need to utilize an online database, such as the JAWSDB_URL add-on offered by Heroku.
+This app can be deployed to a server, such as Heroku or AWS, for online use from different users in different locations. To store data input, you will need to utilize an online database, such as the `mLab Mongo` add-on offered by Heroku.
 
 ## Built With
 
