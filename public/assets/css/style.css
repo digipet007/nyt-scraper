@@ -43,7 +43,7 @@ body {
 
 .jumbotron .caption {
   position: absolute;
-  top: 30%;
+  top: 10%;
   width: 100%;
   text-align: center;
 }
@@ -62,11 +62,11 @@ body {
   font-size: 30px;
 }
 
+/* card styling */
 .article-container {
   padding-bottom: 25px;
 }
 
-/* card styling */
 .card {
   border-radius: 0;
   box-shadow: 3px 3px 20px lightslategrey;
@@ -107,8 +107,10 @@ body {
 
 .scrape-new {
   cursor: pointer;
+  margin-left: 5px;
 }
 
+/* modal */
 textarea {
   padding: 10px;
   resize: none;
@@ -139,14 +141,13 @@ textarea {
 }
 
 #my-modal{
-  position: fixed;
+  position: absolute;
   top: 5%;
   right: 25%;
   z-index: 1000;
   width: 400px;
+  height: auto;
   box-shadow: 3px 3px 20px lightslategrey;
-  /* height: 35%; */
-  /* overflow: scroll; */
 }
 
 .note-delete {
@@ -175,26 +176,23 @@ textarea {
 
 /* add media query for modal */
 @media only screen and (max-width: 600px) {
-  .jumbotron .background-image .overlay{
-    height: 100px;
-    padding-top: 0;
+  .content > div.jumbotron {
+    height: 160px;
+    margin-bottom: 0;
   }
   
-  h1 .display-4 .caption {
-    top: 0%;
+  .jumbotron > .caption > h1.display-4 {
+    /* margin-top: 5px; */
     font-size: 60px;
-    font-weight: 700;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    font-weight: 800;
+    line-height: 1;
   }
 
   #my-modal {
     top: 1%;
     right: 1%;
     width: 98%;
-    height: 98%;
+    height: auto;
   }
 
   .card-body > .btn {
@@ -205,7 +203,9 @@ textarea {
     margin: 2px 0 0 0;
   }
 
-  .navbar-nav > li > a.scrape-new {
+  .navbar > a.scrape-new {
     margin-left: 0;
+    display: block;
+    float: left;
   }
 }
