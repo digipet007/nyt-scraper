@@ -59,7 +59,7 @@ $(document).ready(function() {
       <div class="card" style="width: 100%;">
         <div class="card-body">
             <h3 class="card-title">What would you like to do?</h3>
-            <h4><a class="btn btn-success scrape-new">Try Scraping New Articles</a></h4>
+            <h4><a class="btn btn-danger text-white scrape-new">Try Scraping New Articles</a></h4>
             <h4><a class="btn btn-primary" href="/saved">Go To Saved Articles</a></h4>
         </div>
       </div>
