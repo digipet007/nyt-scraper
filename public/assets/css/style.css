@@ -105,9 +105,10 @@ body {
   background: #e51c23;
 }
 
-.scrape-new {
+.card > .card-body > a.scrape-new {
   cursor: pointer;
-  margin-left: 5px;
+  /* margin-left: 5px; */
+  color:white;
 }
 
 /* modal */
@@ -147,7 +148,6 @@ textarea {
   z-index: 1000;
   width: 400px;
   height: auto;
-  box-shadow: 3px 3px 20px lightslategrey;
 }
 
 .note-delete {
