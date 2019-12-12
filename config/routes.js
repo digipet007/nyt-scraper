@@ -15,10 +15,16 @@ module.exports = function(router) {
   //api route to fetch the articles- calls the fetch function within headlines.js. Then it alerts the user of how many articles it added
   router.get("/api/fetch", function(req, res) {
     headlinesController.fetch(function(err, doc) {
-      res.json({
-        message:
-          "I have found " + Object.keys(doc).length + " new articles for you."
-      });
+      if (doc) {
+        res.json({
+          message:
+            "I have found " + Object.keys(doc).length + " new articles for you."
+        });
+      } else {
+        res.json({
+          message: "Articles are up to date!"
+        });
+      }
     });
   });
 

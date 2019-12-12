@@ -12,7 +12,9 @@ $(document).ready(function() {
     $.get("/api/headlines?saved=false").then(function(data) {
       if (data && data.length) {
         renderArticles(data);
+        $(".main-scrape").show();
       } else {
+        $(".main-scrape").hide();
         renderEmpty();
       }
     });
