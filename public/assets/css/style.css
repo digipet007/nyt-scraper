@@ -19,7 +19,7 @@ body {
 .jumbotron {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 200px;
   padding: 0;
   box-shadow: 10px 5px 20px 2px lightslategrey 
 }
@@ -75,7 +75,7 @@ body {
 
 /* footer styling */
 .footer > .container > p {
-  position: absolute;
+  position: static;
   right: 0;
   bottom: 0;
   left: 0;
