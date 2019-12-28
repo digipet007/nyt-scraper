@@ -143,15 +143,15 @@ textarea {
 
 #my-modal{
   z-index: 1000;
-  width: 400px;
-  max-width: 98%;
+  position: fixed;
+  width: 70vw;
+  max-width: 98vw;
   height: auto;
   max-height: 100%;
-  position: fixed;
+  margin: auto;
+  top: 1vw;
+  left: 14vw;
   overflow: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .note-delete {
@@ -193,9 +193,10 @@ textarea {
   }
 
   #my-modal {
-    top: 1%;
-    right: 1%;
-    width: 98%;
+    top: 1vw;
+    left: 1vw;
+    right: 1vw;
+    width: 98vw;
     height: auto;
   }
 
